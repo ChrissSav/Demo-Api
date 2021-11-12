@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="Initial" author="ChrisSav">
+
+        <createTable tableName="user">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_user"/>
+            </column>
+
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enable" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+
+        <createTable tableName="category">
+            <column name="id" type="varchar(50)">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_color"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="movie">
+            <column name="id" type="varchar(50)">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_color"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="int(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="picture" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+
+        <createTable tableName="movies_categories">
+            <column name="movie_id" type="varchar(255)">
+                <constraints nullable="false" foreignKeyName="fk_movies_categories_movie" primaryKey="true"
+                             primaryKeyName="pk_movies_categories_movie" references="movie(id)"/>
+            </column>
+            <column name="category_id" type="varchar(255)">
+                <constraints nullable="false" foreignKeyName="fk_movies_categories_category" primaryKey="true"
+                             primaryKeyName="pk_movies_categories_category" references="category(id)"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="rent">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_car"/>
+            </column>
+            <column name="charge" type="float"/>
+            <column name="closed" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_timestamp" type="bigint(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_timestamp" type="bigint(20)"/>
+            <column name="movie_id" type="varchar(255)">
+                <constraints nullable="false" foreignKeyName="fk_rent_movie" references="movie(id)"/>
+            </column>
+            <column name="user_id" type="varchar(255)">
+                <constraints nullable="false" foreignKeyName="fk_rent_user" references="user(id)"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="INSERT_VALUES_TO_category" author="chris">
+        <insert tableName="category">
+            <column name="id" value="3a80c60d7ce49f94017ce4a0ebfd0000"/>
+            <column name="name" value="Comedy"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="8a80c60d7ce49f940134ce4a0ebfd0000"/>
+            <column name="name" value="Drama"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="8a80c60d7c549f94017ce4a0ebfd0000"/>
+            <column name="name" value="Fantasy"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="8a80c60d7ce49f94017ce4a0ebfd0000"/>
+            <column name="name" value="Horror"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="8a87c60d7ce49f95017ce4a0ebfd0000"/>
+            <column name="name" value="Mystery"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="INSERT_VALUES_TO_MOVIES" author="chris">
+        <insert tableName="movie">
+            <column name="id" value="3a80c60d7ce49f94017ce4a0ebfd0000"/>
+            <column name="title" value="Passing"/>
+            <column name="description"
+                    value="Passing follows the unexpected reunion of two high school friends, whose renewed acquaintance ignites a mutual obsession that threatens both of their carefully constructed realities."/>
+            <column name="date" value="2021"/>
+            <column name="picture"
+                    value="https://m.media-amazon.com/images/M/MV5BYTNhOTlmMDYtNWUyMi00Y2E0LThmYmItNGY4ZGI2ZDgwZmI3XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UY720_.jpg"/>
+        </insert>
+        <insert tableName="movies_categories">
+            <column name="movie_id" value="3a80c60d7ce49f94017ce4a0ebfd0000"/>
+            <column name="category_id" value="8a80c60d7ce49f940134ce4a0ebfd0000"/>
+        </insert>
+
+        <insert tableName="movie">
+            <column name="id" value="YYefP1buea45FDCEFflg5O2j8rHhlrRjW"/>
+            <column name="title" value="Knives Out"/>
+            <column name="description"
+                    value="A detective investigates the death of a patriarch of an eccentric, combative family."/>
+            <column name="date" value="2019"/>
+            <column name="picture"
+                    value="https://m.media-amazon.com/images/M/MV5BMGUwZjliMTAtNzAxZi00MWNiLWE2NzgtZGUxMGQxZjhhNDRiXkEyXkFqcGdeQXVyNjU1NzU3MzE@._V1_FMjpg_UY720_.jpg"/>
+        </insert>
+        <insert tableName="movies_categories">
+            <column name="movie_id" value="YYefP1buea45FDCEFflg5O2j8rHhlrRjW"/>
+            <column name="category_id" value="8a80c60d7ce49f940134ce4a0ebfd0000"/>
+        </insert>
+        <insert tableName="movies_categories">
+            <column name="movie_id" value="YYefP1buea45FDCEFflg5O2j8rHhlrRjW"/>
+            <column name="category_id" value="3a80c60d7ce49f94017ce4a0ebfd0000"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
+
