@@ -1,5 +1,5 @@
 # REST API |  Online Movies Rent Store
-REST API through which the user can register,log in and log out. He can also, rent a movie and return it. The API is implemetied using Spring Boot.
+REST API through which the user can register,log in and log out. He can also, rent a movie and return it. The API is implemented using Spring Boot.
 
 - Spring Security
 - JWT Authentication
