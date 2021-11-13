@@ -3,6 +3,7 @@ REST API through which the user can register,log in and log out. He can also, re
 
 - Spring Security
 - JWT Authentication
+- MapStruct, for mapping DTOs
 - Spring Data JPA , Hibernate
 - MySQL database
 - Liquibase, for the generation of database tables and handling the migrations
